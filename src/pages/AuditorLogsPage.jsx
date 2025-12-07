@@ -38,21 +38,27 @@ export default function AuditorLogsPage() {
                 <th>시간</th>
                 <th>사용자</th>
                 <th>테이블</th>
-                <th>작업</th>
-                <th>요약</th>
+                <th>동작</th>
               </tr>
             </thead>
             <tbody>
-              {logs.map((l) => (
-                <tr key={l.id || `${l.timestamp}-${l.userId}-${l.tableName}`}>
-                  <td>{l.timestamp}</td>
-                  <td>{l.username || l.userId}</td>
-                  <td>{l.tableName}</td>
-                  <td>{l.action}</td>
-                  <td>{l.summary || l.details}</td>
+              {logs.map((log) => (
+                <tr key={log.auditId ?? log.audit_id}>
+                  {/* 시간: event_time → eventTime 매핑도 대비 */}
+                  <td>{log.eventTime ?? log.event_time ?? "-"}</td>
+
+                  {/* 사용자: actor_user_id → actorUserId */}
+                  <td>{log.actorUserId ?? log.actor_user_id ?? "-"}</td>
+
+                  {/* 테이블: object_table → objectTable */}
+                  <td>{log.objectTable ?? log.object_table ?? "-"}</td>
+
+                  {/* 동작 */}
+                  <td>{log.action}</td>
                 </tr>
               ))}
             </tbody>
+
           </table>
         </div>
       )}

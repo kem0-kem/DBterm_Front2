@@ -3,7 +3,7 @@ import api from "../api/client";
 
 export default function OperatorCreateCampaignPage() {
   const [form, setForm] = useState({
-    title: "",
+    name: "",
     department: "",
     goalAmount: "",
     description: "",
@@ -26,7 +26,7 @@ export default function OperatorCreateCampaignPage() {
     setLoading(true);
     try {
       const payload = {
-        title: form.title,
+        name: form.name,
         department: form.department,
         goalAmount: form.goalAmount ? Number(form.goalAmount) : 0,
         description: form.description,
@@ -51,8 +51,8 @@ export default function OperatorCreateCampaignPage() {
           <div className="form-label">캠페인 제목</div>
           <input
             className="form-input"
-            name="title"
-            value={form.title}
+            name="name"
+            value={form.name}
             onChange={handleChange}
           />
         </div>

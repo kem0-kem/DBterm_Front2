@@ -24,7 +24,7 @@ export default function OperatorCampaignsPage() {
 
   return (
     <div className="card">
-      <h1 className="page-title">캠페인 관리</h1>
+      <h1 className="page-title">캠페인 목록</h1>
       {loading && <p className="text-muted">불러오는 중...</p>}
       {error && <p className="text-error">{error}</p>}
       {!loading && campaigns.length === 0 && (
